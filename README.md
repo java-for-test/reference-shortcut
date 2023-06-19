@@ -5,4 +5,4 @@
 ## Will be implemented:
 - Link Shortening
 - Personal Area
-- API
+- API.

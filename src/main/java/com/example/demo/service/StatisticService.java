@@ -4,6 +4,7 @@ import com.example.demo.domain.ShortLink;
 import com.example.demo.domain.ShortLinkVisit;
 import com.example.demo.repository.ShortLinkRepository;
 import com.example.demo.repository.ShortLinkVisitRepostory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Service
 public class StatisticService {
 
     @Autowired
     private ShortLinkVisitRepostory visitRepository;
     public void increaseStatistic(ShortLink shortLink, String userAgent){
+        log.info("Statistic was increased for " + shortLink);
         ShortLinkVisit visit = new ShortLinkVisit();
         visit.setShortLink(shortLink);
         visit.setUserAgent(userAgent);

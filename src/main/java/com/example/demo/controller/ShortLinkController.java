@@ -2,19 +2,12 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.ShortLink;
 import com.example.demo.dto.ShortLinkDto;
-import com.example.demo.dto.User;
-import com.example.demo.service.GenerateQRCode;
 import com.example.demo.service.ShortLinkService;
 import com.example.demo.service.StatisticService;
-import net.glxn.qrgen.core.image.ImageType;
-import net.glxn.qrgen.javase.QRCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.ByteArrayOutputStream;
-import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/s")
@@ -45,7 +38,7 @@ public class ShortLinkController {
 
     @GetMapping(value = "/{code}/qr", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] GetQRCode(@PathVariable String code){
-//        ByteArrayOutputStream stream = QRCode.from("http://localhost:8080/s/" + code).to(ImageType.JPG).withSize(250, 250).stream();
-        return new GenerateQRCode().GenerateQRCode(code);
+        ShortLink link = shortLinkService.findByCode(code);
+        return shortLinkService.generateQRCode(link);
     }
 }

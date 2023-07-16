@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,5 +29,30 @@ public class ShortLink {
     public ShortLink(String code, String fullLink) {
         this.code = code;
         this.fullLink = fullLink;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getFullLink() {
+        return fullLink;
+    }
+
+    public List<ShortLinkVisit> getVisits() {
+        return visits;
+    }
+
+    @Override
+    public String toString() {
+        return "ShortLink{" +
+                "id=" + id +
+                ", code='" + code + '\'' +
+                ", fullLink='" + fullLink + '\'' +
+                '}';
     }
 }
